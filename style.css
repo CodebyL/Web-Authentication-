@@ -2,7 +2,7 @@
 COLOR PALETTE:
 Main Color (Light Pink): #F9D1E1
 Accent Color (Dark Purple): #7D5A8E
-Complementary Color (Mint Green): #A7E8BD
+Complementary Color (Mint Green): #228B22
 Secondary Accent Color (Light Purple): #E1C4F9
 Neutral Color (White): #fff
 ------------*/
@@ -96,7 +96,7 @@ button:hover {
 
 /*when the password rules are all valided*/
 .valid {
-    color: #A7E8BD;
+    color: #228B22;
 }
 /*when one of the password rules are invalid*/
 .invalid {
