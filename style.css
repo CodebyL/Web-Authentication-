@@ -1,3 +1,11 @@
+/* -----------
+COLOR PALETTE:
+Main Color (Light Pink): #F9D1E1
+Accent Color (Dark Purple): #7D5A8E
+Complementary Color (Mint Green): #A7E8BD
+Secondary Accent Color (Light Purple): #E1C4F9
+Neutral Color (White): #fff
+------------*/
 /* adding a custom font face */
 @font-face{
     font-family: 'Optima';
@@ -10,10 +18,90 @@
 /* general body styling */
 body{
     font-family:"Optima", Arial, san-serif;
-    background-color: #fae6e6;
+    background-color: #F9D1E1;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin:0;
+}
+
+/* Container for the form */
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+h2{
+    text-align: center;
+    color: #7D5A8E;
+}
+
+/*style for labels*/
+label {
+    display: block;
+    margin-top: 10px;
+    color: #7D5A8E;
+}
+
+/*style for input fields*/
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* style for the button */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #F9D1E1;
+    color: #7D5A8E;
+    border:none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/*makes the button change color when pointer is hovering*/
+button:hover {
+    background-color: #E1C4F9;
+}
+
+/*password styling for each*/
+#passwordRules{
+    margin-top: 10px;
+}
+#passwordRules p {
+    margin: 0;
+    color: #7D5A8E;
+}
+#passwordRules ul {
+    list-style-type: none;
+    padding: 0;
+}
+#passwordRules li {
+    margin: 5px 0;
+}
+
+/*when the password rules are all valided*/
+.valid {
+    color: #A7E8BD;
+}
+/*when one of the password rules are invalid*/
+.invalid {
+    color:#7D5A8E;
+
+}
+
+/*styling for after form submission message*/
+#message {
+    margin-top: 10px;
+    text-align: center;
+    color: #7D5A8E;
 }
