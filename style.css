@@ -1,0 +1,19 @@
+/* adding a custom font face */
+@font-face{
+    font-family: 'Optima';
+    src:    url('path/to/optima.woff2') format('woff2'),
+            url('path/to/optima.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* general body styling */
+body{
+    font-family:"Optima", Arial, san-serif;
+    background-color: #fae6e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin:0;
+}
