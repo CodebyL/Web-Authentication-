@@ -1,15 +1,15 @@
-//DOM has to fully load in order to run the script
+// DOM has to fully load in order to run the script
 document.addEventListener('DOMContentLoaded', () => {
-    //GET password input field element
+    // GET password input field element
     const passwordInput = document.getElementById('password');
-    //GET form element
+    // GET form element
     const form = document.getElementById('authForm');
-    //GET the message display element
+    // GET the message display element
     const message = document.getElementById('message');
     // GET the toggle password visibility checkbox
     const togglePassword = document.getElementById('togglePassword');
 
-    //creating rules for password validation with corresponding elements and regex patterns
+    // creating rules for password validation with corresponding elements and regex patterns
     const passwordRules = {
         length: { regex: /.{8,}/, element: document.getElementById('rule1') },
         uppercase: { regex: /[A-Z]/, element: document.getElementById('rule2') },
@@ -18,32 +18,32 @@ document.addEventListener('DOMContentLoaded', () => {
         special: { regex: /[!@#$%^&*]/, element: document.getElementById('rule5') },
     };
 
-    //event listener for any input changes in the password field
-    passwordInput.addEventListener('input',() => {
-        //GET current value of the password input field
+    // event listener for any input changes in the password field
+    passwordInput.addEventListener('input', () => {
+        // GET current value of the password input field
         const password = passwordInput.value;
-        //let a variable track to make sure if all the rules are valid
+        // let a variable track to make sure if all the rules are valid
         let valid = true;
 
-        //check if the rules are invalid or valid
+        // check if the rules are invalid or valid
         for (const ruleName in passwordRules) {
             const rule = passwordRules[ruleName];
             if (rule.regex.test(password)) {
-                //if input matches all rules: valid
+                // if input matches all rules: valid
                 rule.element.classList.add('valid');
                 rule.element.classList.remove('invalid');
             } else {
-                //if input does not match one rule or more: invalid
+                // if input does not match one rule or more: invalid
                 rule.element.classList.add('invalid');
                 rule.element.classList.remove('valid');
                 valid = false;
             }
         }
-        //set a message for invalid inputs
+        // set a message for invalid inputs
         passwordInput.setCustomValidity(valid ? '' : 'Password does not meet all requirements');
     });
 
-    //Event listener for form submission
+    // Event listener for form submission
     form.addEventListener('submit', (event) => {
         // Prevent the default form submission behavior
         event.preventDefault();
@@ -66,13 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    //Event listener for toggling the password visibility
+    // Event listener for toggling the password visibility
     togglePassword.addEventListener('change', () => {
         const type = passwordInput.type === 'password' ? 'text' : 'password';
         passwordInput.type = type;
     });
 
-    // Get the elements for the project management functionality
+    // GET the elements for the project management functionality
     const loginContainer = document.getElementById('loginContainer');
     const dashboardContainer = document.getElementById('dashboardContainer');
     const projectForm = document.getElementById('projectForm');
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Prevent the default form submission behavior
         event.preventDefault();
 
-        // GET the value of the project name input field
+        // Get the value of the project name input field
         const projectName = projectNameInput.value;
 
         // Add the new project to the project list

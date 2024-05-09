@@ -109,18 +109,17 @@ button:hover {
 
 #passwordRules li {
     margin: 5px 0;
-    color: #555;
     font-size: 0.9em;
 }
 
 /* when the password rules are all validated */
 .valid {
-    color: #228B68;
+    color: #228B68; /* Forest Green */
 }
 
 /* when one of the password rules are invalid */
 .invalid {
-    color: #E1C4F9;
+    color: #E1C4F9; /* Light Purple */
 }
 
 /* styling for after form submission message */
