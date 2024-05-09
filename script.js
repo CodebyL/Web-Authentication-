@@ -86,29 +86,17 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         projectItem.appendChild(prioritySelect);
 
-        // Set initial class based on priority
+        // Apply initial class based on default priority
+        applyPriorityStyle(projectItem, 'high');
+
+        // Set class based on priority
         prioritySelect.addEventListener('change', () => {
-            projectItem.classList.remove('high-priority', 'medium-priority', 'low-priority');
-            switch (prioritySelect.value) {
-                case 'high':
-                    projectItem.classList.add('high-priority');
-                    break;
-                case 'medium':
-                    projectItem.classList.add('medium-priority');
-                    break;
-                case 'low':
-                    projectItem.classList.add('low-priority');
-                    break;
-            }
+            applyPriorityStyle(projectItem, prioritySelect.value);
         });
 
-        // Add a checkbox for completed status
-        const completedCheckbox = document.createElement('input');
-        completedCheckbox.type = 'checkbox';
-        projectItem.appendChild(completedCheckbox);
-
-        completedCheckbox.addEventListener('change', () => {
-            if (completedCheckbox.checked) {
+        // Mark as completed when clicking the project item text
+        projectItem.addEventListener('click', () => {
+            if (!projectItem.classList.contains('completed-task')) {
                 projectItem.classList.add('completed-task');
             } else {
                 projectItem.classList.remove('completed-task');
@@ -120,6 +108,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // Clear the project name input field
         projectNameInput.value = '';
     });
+
+    function applyPriorityStyle(projectItem, priority) {
+        projectItem.classList.remove('high-priority', 'medium-priority', 'low-priority');
+        switch (priority) {
+            case 'high':
+                projectItem.classList.add('high-priority');
+                break;
+            case 'medium':
+                projectItem.classList.add('medium-priority');
+                break;
+            case 'low':
+                projectItem.classList.add('low-priority');
+                break;
+        }
+    }
 
     // Event listener for logout button
     logoutButton.addEventListener('click', () => {
