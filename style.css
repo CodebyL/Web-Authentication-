@@ -49,7 +49,7 @@ label {
 
 /*style for input fields*/
 input {
-    width: 100%;
+    width: calc(100% - 20px);
     padding: 8px;
     margin-top: 5px;
     margin-bottom: 10px;
@@ -59,7 +59,7 @@ input {
 
 /* style for the button */
 button {
-    width: calc(100% - 20px);
+    width: 100%;
     padding: 10px;
     background-color: #F9D1E1;
     color: #7D5A8E;
