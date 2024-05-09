@@ -1,41 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"
-        <meta name="viewpoint" content="width=device-width,initial-scale=1.0">
-        <title>Lisette's Web Authentication System</title>
-        <link rel="stylesheet" href="style.css"
-        <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loginContainer" class="container">
+        <h2>User Authentication System</h2>
+        <form id="authForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <label><input type="checkbox" id="togglePassword"> Show Password</label>
+            
+            <div id="passwordRules">
+                <p>Password must contain:</p>
+                <ul>
+                    <li id="rule1">At least 8 characters</li>
+                    <li id="rule2">At least one uppercase letter</li>
+                    <li id="rule3">At least one lowercase letter</li>
+                    <li id="rule4">At least one number</li>
+                    <li id="rule5">At least one special character (!@#$%^&*)</li>
+                </ul>
+            </div>
+            
+            <button type="submit">Login</button>
+        </form>
+        <div id="message"></div>
+    </div>
 
-    <body>
-        <div class ="container">
-            <h2>User Authentication System</h2>
-            <form id = "authForm">
-                <!--Username Form-->
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-                
-                <!--Password Form-->
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-               <!--Password Validation-->
-                <div id="passwordRules">
-                    <p>Password must contain:</p>
-                    <ul>
-                        <li id="rule1">At least 8 characters</li>
-                        <li id="rule2">At least one uppercase letter</li>
-                        <li id="rule3">At least one lowercase letter</li>
-                        <li id="rule4">At least one number</li>
-                        <li id="rule5">At least one special character (!@#$%^&*)</li>
-                    </ul>
-                </div>
-                <button type="submit">Login</button>
-            </form>
-            <div id="message"></div>
+    <div id="dashboardContainer" class="container" style="display: none;">
+        <h2>Project Management Dashboard</h2>
+        <div id="projectList">
+            <h3>Projects</h3>
+            <ul id="projects">
+                <!-- Project items will be dynamically added here -->
+            </ul>
         </div>
+        <form id="projectForm">
+            <label for="projectName">Project Name:</label>
+            <input type="text" id="projectName" name="projectName" required>
+            <button type="submit">Add Project</button>
+        </form>
+        <button id="logoutButton">Logout</button>
+    </div>
 
-        <!--Script file-->
-        <script src="script.js"></script>
-    </body>
+    <script src="script.js"></script>
+</body>
 </html>

@@ -2,111 +2,178 @@
 COLOR PALETTE:
 Main Color (Light Pink): #F9D1E1
 Accent Color (Dark Purple): #7D5A8E
-Complementary Color (Mint Green): #228B22
+Complementary Color (Forest Green): #228B68
 Secondary Accent Color (Light Purple): #E1C4F9
-Neutral Color (White): #fff
+Neutral Color (White): #FFFAF7
 ------------*/
 /* adding a custom font face */
-@font-face{
+@font-face {
     font-family: 'Optima';
-    src:    url('path/to/optima.woff2') format('woff2'),
-            url('path/to/optima.woff') format('woff');
+    src: url('path/to/optima.woff2') format('woff2'),
+         url('path/to/optima.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 /* general body styling */
-body{
-    font-family:"Optima", Arial, san-serif;
+body {
+    font-family: "Optima", Arial, sans-serif;
     background-color: #F9D1E1;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin:0;
+    margin: 0;
 }
 
-/* Container for the form */
+/* Container for the form and dashboard */
 .container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
+    background-color: #FFFAF7; /* Neutral Color */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+    margin: 20px;
 }
 
-h2{
+h2 {
     text-align: center;
     color: #7D5A8E;
+    font-size: 1.8em;
+    margin-bottom: 20px;
 }
 
-/*style for labels*/
+/* style for labels */
 label {
     display: block;
-    margin-top: 10px;
+    margin-top: 20px;
     color: #7D5A8E;
+    font-weight: bold;
+    text-align: left;
 }
 
-/*style for input fields*/
+/* style for input fields */
 input {
     width: calc(100% - 20px);
-    padding: 8px;
+    padding: 10px;
     margin-top: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+/* Style for the toggle password visibility checkbox */
+#togglePassword {
+    margin-top: 10px;
 }
 
 /* style for the button */
 button {
-    width: 50%;
-    padding: 10px;
-    background-color: #F9D1E1;
-    color: #7D5A8E;
+    width: 100%;
+    padding: 12px;
+    background-color: #7D5A8E;
+    color: white;
     border: none;
-    border-radius: 4px;
-    margin: 0 auto;
+    border-radius: 8px;
+    margin: 20px 0 0 0;
     cursor: pointer;
-
-    /*make button centered*/
-    display: block;
-    margin: 20px auto 0 auto;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
-/*makes the button change color when pointer is hovering*/
+/* makes the button change color when pointer is hovering */
 button:hover {
-    background-color: #E1C4F9;
+    background-color: #5a3d6e;
 }
 
-/*password styling for each*/
-#passwordRules{
+/* password styling for each */
+#passwordRules {
     margin-top: 10px;
+    text-align: left;
 }
+
 #passwordRules p {
     margin: 0;
     color: #7D5A8E;
+    font-weight: bold;
 }
+
 #passwordRules ul {
     list-style-type: none;
     padding: 0;
 }
+
 #passwordRules li {
     margin: 5px 0;
+    color: #555;
+    font-size: 0.9em;
 }
 
-/*when the password rules are all valided*/
+/* when the password rules are all validated */
 .valid {
-    color: #228B22;
+    color: #228B68;
 }
-/*when one of the password rules are invalid*/
+
+/* when one of the password rules are invalid */
 .invalid {
-    color:#7D5A8E;
-
+    color: #E1C4F9;
 }
 
-/*styling for after form submission message*/
+/* styling for after form submission message */
 #message {
-    margin-top: 10px;
+    margin-top: 20px;
     text-align: center;
     color: #7D5A8E;
+    font-size: 1em;
+}
+
+/* Project management dashboard */
+#projectList {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#projectList h3 {
+    color: #7D5A8E;
+    margin-bottom: 10px;
+}
+
+#projects {
+    list-style-type: none;
+    padding: 0;
+}
+
+#projects li {
+    margin: 5px 0;
+    padding: 10px;
+    background-color: #E1C4F9;
+    border-radius: 4px;
+    color: #7D5A8E;
+    font-weight: bold;
+}
+
+#projectForm {
+    margin-top: 20px;
+}
+
+#logoutButton {
+    width: 100%;
+    padding: 12px;
+    background-color: #F9D1E1;
+    color: #7D5A8E;
+    border: none;
+    border-radius: 8px;
+    margin: 20px 0 0 0;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#logoutButton:hover {
+    background-color: #E1C4F9;
 }
