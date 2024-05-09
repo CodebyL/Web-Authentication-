@@ -4,30 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const message = document.getElementById('message');
     const togglePassword = document.getElementById('togglePassword');
 
-    const passwordRules = {
-        length: { regex: /.{8,}/, element: document.getElementById('rule1') },
-        uppercase: { regex: /[A-Z]/, element: document.getElementById('rule2') },
-        lowercase: { regex: /[a-z]/, element: document.getElementById('rule3') },
-        number: { regex: /[0-9]/, element: document.getElementById('rule4') },
-        special: { regex: /[!@#$%^&*]/, element: document.getElementById('rule5') },
-    };
-
-    passwordInput.addEventListener('input', () => {
-        const password = passwordInput.value;
-        let valid = true;
-
-        for (const ruleName in passwordRules) {
-            const rule = passwordRules[ruleName];
-            if (rule.regex.test(password)) {
-                rule.element.classList.add('valid');
-                rule.element.classList.remove('invalid');
-            } else {
-                rule.element.classList.add('invalid');
-                rule.element.classList.remove('valid');
-                valid = false;
-            }
-        }
-        passwordInput.setCustomValidity(valid ? '' : 'Password does not meet all requirements');
+    togglePassword.addEventListener('change', () => {
+        const type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
     });
 
     form.addEventListener('submit', async (event) => {
@@ -35,24 +14,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
-        // Hash the password using bcrypt (Simulated here, actual hashing would be on the server-side)
-        const hashedPassword = await hashPassword(password);
-
-        if (passwordInput.checkValidity() && password.length >= 8) {
-            // Log in the user (Simulated)
-            message.textContent = `Welcome, ${username}! Your password hash is: ${hashedPassword}`;
-            message.style.color = 'green';
-            loginContainer.style.display = 'none';
-            dashboardContainer.style.display = 'block';
-        } else {
-            message.textContent = 'Password must be at least 8 characters and meet all requirements.';
+        // Example of sending registration information to the backend
+        fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        })
+        .then(response => response.text())
+        .then(data => {
+            message.textContent = data;
+            if (data === 'Login successful.') {
+                message.style.color = 'green';
+                loginContainer.style.display = 'none';
+                dashboardContainer.style.display = 'block';
+            } else {
+                message.style.color = 'red';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            message.textContent = 'Failed to communicate with the server.';
             message.style.color = 'red';
-        }
-    });
-
-    togglePassword.addEventListener('change', () => {
-        const type = passwordInput.type === 'password' ? 'text' : 'password';
-        passwordInput.type = type;
+        });
     });
 
     const loginContainer = document.getElementById('loginContainer');
@@ -129,11 +114,4 @@ document.addEventListener('DOMContentLoaded', () => {
         dashboardContainer.style.display = 'none';
         message.textContent = '';
     });
-
-    // Simulated function to hash a password using bcrypt (Actual implementation would be server-side)
-    async function hashPassword(password) {
-        const saltRounds = 10;
-        // This is a simulated hash for demonstration. In a real app, use bcrypt on the server to hash passwords.
-        return 'hashed_' + password;
-    }
 });
