@@ -24,15 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
         let valid = true;
 
         //check if the rules is invalid or valid
-        for (const rule in rules) {
-            if (rules[rule].regex.test(password)) {
+        for (const ruleName in passwordRules) {
+            const rule = passwordRules[ruleName];
+            if (rule.regex.test(password)) {
                 //if input matches all rules: valid
-                rules[rule].element.classList.add('valid');
-                rules[rule].element.classList.remove('invalid');
+                rule.element.classList.add('valid');
+                rule.element.classList.remove('invalid');
             } else {
             //if input does not match one rule or more: invalid
-            rules[rule].element.classList.add('invalid');
-                rules[rule].element.classList.remove('valid');
+                rule.element.classList.add('invalid');
+                rule.element.classList.remove('valid');
                 valid = false;
             }
         }    
