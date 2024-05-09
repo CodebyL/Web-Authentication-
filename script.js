@@ -30,18 +30,22 @@ document.addEventListener('DOMContentLoaded', () => {
         passwordInput.setCustomValidity(valid ? '' : 'Password does not meet all requirements');
     });
 
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
-        if (passwordInput.checkValidity()) {
-            message.textContent = `Welcome, ${username}!`;
+        // Hash the password using bcrypt (Simulated here, actual hashing would be on the server-side)
+        const hashedPassword = await hashPassword(password);
+
+        if (passwordInput.checkValidity() && password.length >= 8) {
+            // Log in the user (Simulated)
+            message.textContent = `Welcome, ${username}! Your password hash is: ${hashedPassword}`;
             message.style.color = 'green';
             loginContainer.style.display = 'none';
             dashboardContainer.style.display = 'block';
         } else {
-            message.textContent = 'Password does not meet the requirements.';
+            message.textContent = 'Password must be at least 8 characters and meet all requirements.';
             message.style.color = 'red';
         }
     });
@@ -87,12 +91,12 @@ document.addEventListener('DOMContentLoaded', () => {
         projectItem.addEventListener('click', () => {
             if (!projectItem.classList.contains('completed-task')) {
                 projectItem.classList.add('completed-task');
-                projectItem.style.backgroundColor = '#C7C5CA'; // Completed task color
-                projectItem.style.textDecoration = 'line-through'; // Cross off the completed task
+                projectItem.style.backgroundColor = '#C7C5CA'; // Color for completed task
+                projectItem.style.textDecoration = 'line-through'; // Crosses off the task
             } else {
                 projectItem.classList.remove('completed-task');
-                projectItem.style.textDecoration = 'none'; // Remove line-through when unmarked
-                applyPriorityStyle(projectItem, prioritySelect.value); // Reapply priority color
+                projectItem.style.textDecoration = 'none'; // Remove the cross-off
+                applyPriorityStyle(projectItem, prioritySelect.value); // Restore priority color
             }
         });
 
@@ -125,4 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
         dashboardContainer.style.display = 'none';
         message.textContent = '';
     });
+
+    // Simulated function to hash a password using bcrypt (Actual implementation would be server-side)
+    async function hashPassword(password) {
+        const saltRounds = 10;
+        // This is a simulated hash for demonstration. In a real app, use bcrypt on the server to hash passwords.
+        return 'hashed_' + password;
+    }
 });
