@@ -65,8 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const dashboardContainer = document.getElementById('dashboardContainer');
     const projectForm = document.getElementById('projectForm');
     const projectNameInput = document.getElementById('projectName');
-    const projectPriority = document.getElementById('projectPriority');
-    const projectCompleted = document.getElementById('projectCompleted');
     const projectsList = document.getElementById('projects');
     const logoutButton = document.getElementById('logoutButton');
 
@@ -75,35 +73,52 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
 
         const projectName = projectNameInput.value;
-        const projectPriorityValue = projectPriority.value;
-        const projectIsCompleted = projectCompleted.checked;
 
         const projectItem = document.createElement('li');
         projectItem.textContent = projectName;
 
-        // Set the priority class based on the selected priority
-        switch (projectPriorityValue) {
-            case 'high':
-                projectItem.classList.add('high-priority');
-                break;
-            case 'medium':
-                projectItem.classList.add('medium-priority');
-                break;
-            case 'low':
-                projectItem.classList.add('low-priority');
-                break;
-        }
+        // Add a dropdown for priority
+        const prioritySelect = document.createElement('select');
+        prioritySelect.innerHTML = `
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+        `;
+        projectItem.appendChild(prioritySelect);
 
-        // Check if the project is marked as completed
-        if (projectIsCompleted) {
-            projectItem.classList.add('completed-task');
-        }
+        // Set initial class based on priority
+        prioritySelect.addEventListener('change', () => {
+            projectItem.classList.remove('high-priority', 'medium-priority', 'low-priority');
+            switch (prioritySelect.value) {
+                case 'high':
+                    projectItem.classList.add('high-priority');
+                    break;
+                case 'medium':
+                    projectItem.classList.add('medium-priority');
+                    break;
+                case 'low':
+                    projectItem.classList.add('low-priority');
+                    break;
+            }
+        });
+
+        // Add a checkbox for completed status
+        const completedCheckbox = document.createElement('input');
+        completedCheckbox.type = 'checkbox';
+        projectItem.appendChild(completedCheckbox);
+
+        completedCheckbox.addEventListener('change', () => {
+            if (completedCheckbox.checked) {
+                projectItem.classList.add('completed-task');
+            } else {
+                projectItem.classList.remove('completed-task');
+            }
+        });
 
         projectsList.appendChild(projectItem);
 
-        // Clear the project name input field and reset the form
+        // Clear the project name input field
         projectNameInput.value = '';
-        projectForm.reset(); // Resets the entire form including priority and checkbox
     });
 
     // Event listener for logout button
