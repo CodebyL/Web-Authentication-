@@ -59,7 +59,7 @@ input {
 
 /* style for the button */
 button {
-    width: 100%;
+    width: calc(100% - 20px);
     padding: 10px;
     background-color: #F9D1E1;
     color: #7D5A8E;
