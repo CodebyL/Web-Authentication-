@@ -102,8 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
         projectItem.addEventListener('click', () => {
             if (!projectItem.classList.contains('completed-task')) {
                 projectItem.classList.add('completed-task');
+                projectItem.style.backgroundColor = '#C7C5CA'; // Completed task color
             } else {
                 projectItem.classList.remove('completed-task');
+                applyPriorityStyle(projectItem, prioritySelect.value); // Reapply priority color
             }
         });
 
@@ -118,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         projectItem.classList.remove('high-priority', 'medium-priority', 'low-priority');
         switch (priority) {
             case 'high':
-                projectItem.style.backgroundColor = '#FF527B'; // High Priority
+                projectItem.style.backgroundColor = '#F8BFBF'; // High Priority
                 break;
             case 'medium':
                 projectItem.style.backgroundColor = '#F9F3DC'; // Medium Priority
@@ -126,6 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'low':
                 projectItem.style.backgroundColor = '#E1ECE9'; // Low Priority
                 break;
+        }
+        // Reset to default text style if not completed
+        if (!projectItem.classList.contains('completed-task')) {
+            projectItem.style.textDecoration = 'none';
         }
     }
 
