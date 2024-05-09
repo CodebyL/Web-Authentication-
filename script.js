@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('authForm');
     //GET the message display element
     const message = document.getElementById('message');
+    // GET the toggle password visibility checkbox
+    const togglePassword = document.getElementById('togglePassword');
 
     //creating rules for password validation with corresponding elements and regex patterns
     const passwordRules = {
@@ -83,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Prevent the default form submission behavior
         event.preventDefault();
 
-        // Get the value of the project name input field
+        // GET the value of the project name input field
         const projectName = projectNameInput.value;
 
         // Add the new project to the project list
