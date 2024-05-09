@@ -76,6 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const projectItem = document.createElement('li');
         projectItem.textContent = projectName;
+        projectItem.style.padding = '10px';
+        projectItem.style.borderRadius = '4px';
+        projectItem.style.color = '#7D5A8E';
+        projectItem.style.fontWeight = 'bold';
 
         // Add a dropdown for priority
         const prioritySelect = document.createElement('select');
@@ -109,17 +113,18 @@ document.addEventListener('DOMContentLoaded', () => {
         projectNameInput.value = '';
     });
 
+    // Function to apply priority color based on the selection
     function applyPriorityStyle(projectItem, priority) {
         projectItem.classList.remove('high-priority', 'medium-priority', 'low-priority');
         switch (priority) {
             case 'high':
-                projectItem.classList.add('high-priority');
+                projectItem.style.backgroundColor = '#FF527B'; // High Priority
                 break;
             case 'medium':
-                projectItem.classList.add('medium-priority');
+                projectItem.style.backgroundColor = '#F9F3DC'; // Medium Priority
                 break;
             case 'low':
-                projectItem.classList.add('low-priority');
+                projectItem.style.backgroundColor = '#E1ECE9'; // Low Priority
                 break;
         }
     }
