@@ -20,47 +20,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // event listener for any input changes in the password field
     passwordInput.addEventListener('input', () => {
-        // GET current value of the password input field
         const password = passwordInput.value;
-        // let a variable track to make sure if all the rules are valid
         let valid = true;
 
-        // check if the rules are invalid or valid
         for (const ruleName in passwordRules) {
             const rule = passwordRules[ruleName];
             if (rule.regex.test(password)) {
-                // if input matches all rules: valid
                 rule.element.classList.add('valid');
                 rule.element.classList.remove('invalid');
             } else {
-                // if input does not match one rule or more: invalid
                 rule.element.classList.add('invalid');
                 rule.element.classList.remove('valid');
                 valid = false;
             }
         }
-        // set a message for invalid inputs
         passwordInput.setCustomValidity(valid ? '' : 'Password does not meet all requirements');
     });
 
     // Event listener for form submission
     form.addEventListener('submit', (event) => {
-        // Prevent the default form submission behavior
         event.preventDefault();
-
-        // Get the values of the username and password input fields
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
-        // Check if the password input field is valid
         if (passwordInput.checkValidity()) {
-            // If valid, display a welcome message and show the dashboard
             message.textContent = `Welcome, ${username}!`;
             message.style.color = 'green';
             loginContainer.style.display = 'none';
             dashboardContainer.style.display = 'block';
         } else {
-            // If not valid, display an error message
             message.textContent = 'Password does not meet the requirements.';
             message.style.color = 'red';
         }
@@ -77,32 +65,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const dashboardContainer = document.getElementById('dashboardContainer');
     const projectForm = document.getElementById('projectForm');
     const projectNameInput = document.getElementById('projectName');
+    const projectPriority = document.getElementById('projectPriority');
+    const projectCompleted = document.getElementById('projectCompleted');
     const projectsList = document.getElementById('projects');
     const logoutButton = document.getElementById('logoutButton');
 
     // Event listener for project form submission
     projectForm.addEventListener('submit', (event) => {
-        // Prevent the default form submission behavior
         event.preventDefault();
 
-        // Get the value of the project name input field
         const projectName = projectNameInput.value;
+        const projectPriorityValue = projectPriority.value;
+        const projectIsCompleted = projectCompleted.checked;
 
-        // Add the new project to the project list
         const projectItem = document.createElement('li');
         projectItem.textContent = projectName;
+
+        // Set the priority class based on the selected priority
+        switch (projectPriorityValue) {
+            case 'high':
+                projectItem.classList.add('high-priority');
+                break;
+            case 'medium':
+                projectItem.classList.add('medium-priority');
+                break;
+            case 'low':
+                projectItem.classList.add('low-priority');
+                break;
+        }
+
+        // Check if the project is marked as completed
+        if (projectIsCompleted) {
+            projectItem.classList.add('completed-task');
+        }
+
         projectsList.appendChild(projectItem);
 
-        // Clear the project name input field
+        // Clear the project name input field and reset the form
         projectNameInput.value = '';
+        projectForm.reset(); // Resets the entire form including priority and checkbox
     });
 
     // Event listener for logout button
     logoutButton.addEventListener('click', () => {
-        // Clear the project list
         projectsList.innerHTML = '';
-
-        // Show the login container and hide the dashboard
         loginContainer.style.display = 'block';
         dashboardContainer.style.display = 'none';
         message.textContent = '';

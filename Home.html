@@ -44,6 +44,16 @@
         <form id="projectForm">
             <label for="projectName">Project Name:</label>
             <input type="text" id="projectName" name="projectName" required>
+
+            <label for="projectPriority">Priority:</label>
+            <select id="projectPriority">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+            </select>
+
+            <label><input type="checkbox" id="projectCompleted"> Mark as Completed</label>
+
             <button type="submit">Add Project</button>
         </form>
         <button id="logoutButton">Logout</button>

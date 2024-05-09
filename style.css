@@ -2,9 +2,14 @@
 COLOR PALETTE:
 Main Color (Light Pink): #F9D1E1
 Accent Color (Dark Purple): #7D5A8E
+(DARKER Purple): #5a3d6e
 Complementary Color (Forest Green): #228B68
 Secondary Accent Color (Light Purple): #E1C4F9
-Neutral Color (White): #FFFAF7
+Neutral Color (Off White): #FFFAF7
+High Priority: #FF527B
+Medium Priority: #F9F3DC
+Low Priority: #E1ECE9
+Task Completed: #C7C5CA
 ------------*/
 /* adding a custom font face */
 @font-face {
@@ -119,7 +124,7 @@ button:hover {
 
 /* when one of the password rules are invalid */
 .invalid {
-    color: #E1C4F9; /* Light Purple */
+    color: #7D5A8E; /* Light Purple */
 }
 
 /* styling for after form submission message */
@@ -158,6 +163,14 @@ button:hover {
 #projectForm {
     margin-top: 20px;
 }
+
+/* Priority colors */
+.high-priority { background-color: #FF527B; } /* High Priority */
+.medium-priority { background-color: #F9F3DC; } /* Medium Priority */
+.low-priority { background-color: #E1ECE9; } /* Low Priority */
+
+/* Completed task styling */
+.completed-task { background-color: #C7C5CA; text-decoration: line-through; }
 
 #logoutButton {
     width: 100%;
